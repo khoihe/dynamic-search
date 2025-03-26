@@ -1,6 +1,3 @@
-using DynamicSearch.EfCore.Constant;
-using DynamicSearch.EfCore.Enum;
-
 namespace DynamicSearch.Test.Integration;
 
 public class DeviceTests : IClassFixture<WebApplicationFactory<Startup>>

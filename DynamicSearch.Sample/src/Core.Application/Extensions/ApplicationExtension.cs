@@ -8,7 +8,6 @@ public static class ApplicationExtension
     {
         // Lib services
         serviceCollection.AddEfCoreDynamicSearch();
-        serviceCollection.AddDapperDynamicSearch();
         serviceCollection.AddMediatR(typeof(ApplicationExtension).GetTypeInfo().Assembly);
 
         // Internal services

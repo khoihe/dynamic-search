@@ -11,5 +11,5 @@ global using MediatR;
 global using Kernel.Lib.Constant;
 
 global using Core.Application.Command;
+global using Core.Application.Extension;
 global using Core.Persistence.Extension;
-global using Core.ApplicationExtension.Extension;
