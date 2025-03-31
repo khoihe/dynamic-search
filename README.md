@@ -6,13 +6,6 @@
 
 > Dynamic Search is a library that built from Linq.Dynamic.Core, main features including paging, sorting, and filtering
 
-## ToC
-| Directory            | Description                                                                 |
-| -------------------- | --------------------------------------------------------------------------- |
-| DynamicSearch.Sample | Sample WebAPI project using Dynamic Search (constructed by Clean Architect) |
-| DynamicSearch.EfCore | Core of the library                                                         |
-| DynamicSearch.Test   | Unit tests by TestContainers                                                |
-
 ## 1. Configuration
 - [ASP.NET Core DI](./DynamicSearch.Sample/src/Core.Application/Extensions/ApplicationExtension.cs)
 - [Register Service](./DynamicSearch.Sample/src/Core.Application/Services/DeviceService.cs)
