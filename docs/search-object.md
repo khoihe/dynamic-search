@@ -113,7 +113,7 @@
 }
 ```
 
-### Request (more sample in )
+### Request
 - Filter only items have name "Device 1"
 ```json
 {
