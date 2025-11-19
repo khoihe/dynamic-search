@@ -1,0 +1,73 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    services:
+      docker:
+        image: docker:dind
+        options: --privileged
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET 10
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+        dotnet-quality: 'preview'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+
+    - name: Run tests with coverage
+      run: |
+        dotnet test --no-build --configuration Release \
+          --collect:"XPlat Code Coverage" \
+          --results-directory ./TestResults \
+          --logger "trx;LogFileName=test-results.trx" \
+          -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results
+        path: ./TestResults
+
+    - name: Generate coverage report
+      uses: danielpalme/ReportGenerator-GitHub-Action@5.3.8
+      with:
+        reports: './TestResults/**/coverage.cobertura.xml'
+        targetdir: './CoverageReport'
+        reporttypes: 'HtmlInline;Cobertura;MarkdownSummaryGithub'
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: ./CoverageReport
+
+    - name: Add coverage PR comment
+      uses: marocchino/sticky-pull-request-comment@v2
+      if: github.event_name == 'pull_request'
+      with:
+        recreate: true
+        path: ./CoverageReport/SummaryGithub.md
+
+    - name: Write coverage to job summary
+      run: |
+        if [ -f "./CoverageReport/SummaryGithub.md" ]; then
+          cat ./CoverageReport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+        fi

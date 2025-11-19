@@ -1,13 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ThreadPoolMinThreads>50</ThreadPoolMinThreads>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
-    <PackageReference Include="IdentityServer4.AccessTokenValidation" />
   </ItemGroup>
 
   <ItemGroup>
