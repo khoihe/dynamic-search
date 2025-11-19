@@ -4,6 +4,6 @@ public class DateTimeParser : IValueParser<DateTime>
 {
     public DateTime Parse(string value)
     {
-        return DateTime.ParseExact(value, Defaults.DefaultFullDateTimeFormat, CultureInfo.InvariantCulture);
+        return DateTime.ParseExact(value, Defaults.DEFAULT_FULL_DATETIME_FORMAT, CultureInfo.InvariantCulture);
     }
 }

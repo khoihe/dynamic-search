@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Kernel.Lib" Version="1.0.11" />
+    <ProjectReference Include="../Infrastructure/Kernel.Lib/Kernel.Lib.csproj" />
+    <ProjectReference Include="../Infrastructure/GenericRepository.Lib/GenericRepository.Lib.csproj" />
+    <ProjectReference Include="../Infrastructure/UserContext.Lib/UserContext.Lib.csproj" />
   </ItemGroup>
 
 </Project>

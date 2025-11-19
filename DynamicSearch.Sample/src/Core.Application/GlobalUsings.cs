@@ -13,8 +13,6 @@ global using DynamicSearch.EfCore.Model;
 global using DynamicSearch.EfCore.Service;
 global using DynamicSearch.EfCore.Extension;
 global using DynamicSearch.EfCore.Interface;
-global using DynamicSearch.Dapper.Model;
-global using DynamicSearch.Dapper.Extension;
 global using GenericRepository.Lib.Interface;
 global using Kernel.Lib.Constant;
 

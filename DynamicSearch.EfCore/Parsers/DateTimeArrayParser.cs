@@ -11,8 +11,8 @@ internal class DateTimeArrayParser : IValueArrayParser<DateTime>
             throw new Exception("Invalid input of type DateTime");
         }
 
-        var fromDateTime = DateTime.ParseExact(filterArray[0].Trim(), Defaults.DefaultFullDateTimeFormat, CultureInfo.InvariantCulture);
-        var toDateTime = DateTime.ParseExact(filterArray[1].Trim(), Defaults.DefaultFullDateTimeFormat, CultureInfo.InvariantCulture);
+        var fromDateTime = DateTime.ParseExact(filterArray[0].Trim(), Defaults.DEFAULT_FULL_DATETIME_FORMAT, CultureInfo.InvariantCulture);
+        var toDateTime = DateTime.ParseExact(filterArray[1].Trim(), Defaults.DEFAULT_FULL_DATETIME_FORMAT, CultureInfo.InvariantCulture);
 
         var utcFromDateTime = DateTime.SpecifyKind(fromDateTime, DateTimeKind.Utc);
         var utcToDateTime = DateTime.SpecifyKind(toDateTime, DateTimeKind.Utc);

@@ -17,7 +17,7 @@ public static class ObjectExtension
             }
             if (valueProperty.GetType() == typeof(DateTime))
             {
-                var datetimeValue = Convert.ToDateTime(valueProperty).ToString(Defaults.DefaultFullDateTimeFormat);
+                var datetimeValue = Convert.ToDateTime(valueProperty).ToString(Defaults.DEFAULT_FULL_DATETIME_FORMAT);
                 expando.Add(property.Key, datetimeValue);
             }
             else

@@ -6,9 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.3.2" />
-    <PackageReference Include="Kernel.Lib" Version="1.0.11" />
-    <PackageReference Include="GenericRepository.Lib" Version="1.0.11" />
+    <PackageReference Include="System.Linq.Dynamic.Core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Infrastructure/Kernel.Lib/Kernel.Lib.csproj" />
+    <ProjectReference Include="../Infrastructure/GenericRepository.Lib/GenericRepository.Lib.csproj" />
+    <ProjectReference Include="../Infrastructure/UserContext.Lib/UserContext.Lib.csproj" />
   </ItemGroup>
 
 </Project>
