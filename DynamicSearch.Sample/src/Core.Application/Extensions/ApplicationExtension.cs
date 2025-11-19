@@ -8,7 +8,7 @@ public static class ApplicationExtension
     {
         // Lib services
         serviceCollection.AddEfCoreDynamicSearch();
-        serviceCollection.AddMediatR(typeof(ApplicationExtension).GetTypeInfo().Assembly);
+        serviceCollection.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ApplicationExtension).Assembly));
 
         // Internal services
         serviceCollection.AddScoped<IDeviceService, DeviceService>();
