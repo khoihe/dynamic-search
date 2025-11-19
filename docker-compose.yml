@@ -10,12 +10,19 @@ services:
     networks:
       - dynamic-search
 
-  core-migration:
-    image: khoitmp/core-service:migration-latest
-    container_name: core-migration
+  migration-runner:
+    image: erikbra/grate:latest
+    container_name: migration-runner
     restart: on-failure
+    volumes:
+      - ./sql:/db
+    environment:
+      - DATABASE_TYPE=PostgreSQL
+      - CREATE_DATABASE=true
+      - TRANSACTION=true
+      - APP_CONNSTRING=Host=postgres;Port=5432;User Id=postgres;Password=Pass123!;Database=core
     depends_on:
-      - postgresdb
+      - postgres      
     networks:
       - dynamic-search
 

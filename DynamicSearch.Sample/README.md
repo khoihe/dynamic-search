@@ -1,1 +1,1 @@
-![](../imgs/clean-architecture.png)
+![](../docs/imgs/clean-architecture.png)

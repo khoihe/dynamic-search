@@ -11,8 +11,9 @@
     <PackageReference Include="MSTest.TestFramework" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio" />
-    <PackageReference Include="Testcontainers" />
     <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Testcontainers" />
+    <PackageReference Include="Testcontainers.PostgreSql" />
   </ItemGroup>
 
   <ItemGroup>

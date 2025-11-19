@@ -9,7 +9,7 @@
 | ------------------------------------------------------------------------ |
 | [How to construct Search Object from front-end](./docs/search-object.md) |
 | [How to setup in ASP.NET Core from back-end](./docs/setup.md)            |
-| [How to run HTTP Integration Test](./docs/testing.md)           |
+| [How to run HTTP Integration Test](./docs/testing.md)                    |
 
 ## Features
 ### Search with paging

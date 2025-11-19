@@ -1,25 +1,19 @@
 namespace DynamicSearch.Test.Integration;
 
-public class DeviceTests : IClassFixture<WebApplicationFactory<Startup>>
+[Collection("Composite")]
+public class DeviceTests : IClassFixture<CompositeFixture>
 {
-    private readonly WebApplicationFactory<Startup> _factory;
+    private readonly ITestOutputHelper _output;
+    private readonly TestWebApplicationFactory _factory;
+    private readonly CompositeFixture _compositeFixture;
     private readonly HttpClient _httpClient;
     private readonly string _host = "http://localhost";
     private readonly string _mediaType = "application/json";
 
-    public DeviceTests(WebApplicationFactory<Startup> factory)
+    public DeviceTests(ITestOutputHelper output, CompositeFixture compositeFixture)
     {
-        _factory = factory.WithWebHostBuilder(builder =>
-        {
-            builder.UseEnvironment("Development");
-            builder.ConfigureAppConfiguration((hostingContext, configBuilder) =>
-            {
-                var env = hostingContext.HostingEnvironment;
-                configBuilder.AddJsonFile("appsettings.json", optional: true)
-                    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-                configBuilder.AddEnvironmentVariables();
-            });
-        });
+        _output = output;
+        _factory = new TestWebApplicationFactory(compositeFixture);
         _httpClient = _factory.CreateClient();
     }
 
