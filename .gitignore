@@ -485,3 +485,9 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 docs/nuget.md
+
+# Development and monitoring scripts
+monitor-actions.sh
+monitor_actions.py
+check_actions_status.py
+auto_monitor_and_fix.py
