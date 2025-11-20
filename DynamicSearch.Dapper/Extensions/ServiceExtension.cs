@@ -22,13 +22,13 @@ public static class ServiceExtension
         serviceCollection.AddSingleton<EndsWithOperationBuilder>();
         serviceCollection.AddSingleton<NotEndsWithOperationBuilder>();
         serviceCollection.AddSingleton<IValueParser<string>, StringParser>();
-        serviceCollection.AddSingleton<IValueParser<double>, NumbericParser>();
+        serviceCollection.AddSingleton<IValueParser<double>, NumericParser>();
         serviceCollection.AddSingleton<IValueParser<bool>, BoolParser>();
         serviceCollection.AddSingleton<IValueParser<Guid>, GuidParser>();
         serviceCollection.AddSingleton<IValueParser<DateTime>, DateTimeParser>();
         serviceCollection.AddSingleton<IValueArrayParser<Guid>, GuidArrayParser>();
         serviceCollection.AddSingleton<IValueArrayParser<string>, StringArrayParser>();
-        serviceCollection.AddSingleton<IValueArrayParser<double>, NumbericArrayParser>();
+        serviceCollection.AddSingleton<IValueArrayParser<double>, NumericArrayParser>();
         serviceCollection.AddSingleton<IValueArrayParser<DateTime>, DateTimeArrayParser>();
         serviceCollection.AddSingleton(GetOperationServices);
         serviceCollection.AddScoped<IQueryService, DapperQueryService>();

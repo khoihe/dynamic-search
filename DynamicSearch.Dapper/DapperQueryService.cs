@@ -1,7 +1,7 @@
 namespace DynamicSearch.Dapper;
 
 /// <summary>
-/// TODO: Update the service to prevent SQL Injection
+/// Dapper query service with SQL injection prevention
 /// </summary>
 public class DapperQueryService : IQueryService
 {
@@ -61,9 +61,15 @@ public class DapperQueryService : IQueryService
                 var splitedOrderBy = splitedSort.Split("=");
                 if (splitedOrderBy.Count() == 2)
                 {
-                    var columnName = splitedOrderBy[0];
-                    var orderByType = splitedOrderBy[1];
-                    sortList.Add($"{columnName.ToStringQuote()} {orderByType}");
+                    var columnName = splitedOrderBy[0].Trim();
+                    var orderByType = splitedOrderBy[1].Trim();
+
+                    // Validate and safely quote the column name to prevent SQL injection
+                    var safeColumnName = SqlIdentifierValidator.QuoteIdentifier(columnName);
+                    // Validate sort order (asc/desc only) to prevent SQL injection
+                    var safeSortOrder = SqlIdentifierValidator.ValidateSortOrder(orderByType);
+
+                    sortList.Add($"{safeColumnName} {safeSortOrder}");
                 }
             }
             resultQuery = string.Join(",", sortList);

@@ -1,6 +1,6 @@
 namespace DynamicSearch.EfCore.Service;
 
-internal class NumbericParser : IValueParser<double>
+internal class NumericParser : IValueParser<double>
 {
     public double Parse(string value)
     {

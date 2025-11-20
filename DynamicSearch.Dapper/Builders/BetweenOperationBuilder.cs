@@ -18,7 +18,7 @@ public class BetweenOperationBuilder : BaseArrayBuilder
     {
         if (values.Length != 2) throw new ArgumentException($"Value should be an array of 2 values");
         string tokenFrom = "@valueFrom", tokenTo = "@valueTo";
-        string query = $"( {tokenFrom} <= {fieldName}::date && {fieldName}::date <= {tokenTo} )";
+        string query = $"( {tokenFrom} <= {fieldName}::date and {fieldName}::date <= {tokenTo} )";
         return (query, values.Select(x => x as object).ToArray(), new string[] { tokenFrom, tokenTo });
     }
 
@@ -26,7 +26,7 @@ public class BetweenOperationBuilder : BaseArrayBuilder
     {
         if (values.Length != 2) throw new ArgumentException($"Value should be an array of 2 values");
         string tokenFrom = "@valueFrom", tokenTo = "@valueTo";
-        string query = $"( {tokenFrom} <= {fieldName} && {fieldName} <= {tokenTo} )";
+        string query = $"( {tokenFrom} <= {fieldName} and {fieldName} <= {tokenTo} )";
         return (query, values.Select(x => x as object).ToArray(), new string[] { tokenFrom, tokenTo });
     }
 }
