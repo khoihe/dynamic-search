@@ -729,9 +729,9 @@ public class DapperDeviceTests : IClassFixture<CompositeFixture>
         // Act
         var (query, value) = _queryService.CompileQuery(_baseQuery, criteria);
 
-        // Assert
+        // Assert - If we got here without throwing, nested properties are valid
         Xunit.Assert.Contains("\"type.name\"", query);
-        Xunit.Assert.DoesNotThrow(() => _queryService.CompileQuery(_baseQuery, criteria));
+        Xunit.Assert.NotNull(query);
     }
 
     #endregion
