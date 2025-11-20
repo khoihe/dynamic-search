@@ -1,6 +1,6 @@
 namespace DynamicSearch.Dapper.Parser;
 
-public class NumbericArrayParser : IValueArrayParser<double>
+public class NumericArrayParser : IValueArrayParser<double>
 {
     public double[] Parse(string value)
     {

@@ -18,7 +18,8 @@ public class SqlFilterCompiler : IFilterCompiler
             if (!SupportOperations.ContainsKey(queryFilter.Operation))
                 throw new NotSupportedException($"{queryFilter.Operation} is not supported");
 
-            queryFilter.QueryKey = queryFilter.QueryKey.ToStringQuote();
+            // Validate and safely quote the query key to prevent SQL injection
+            queryFilter.QueryKey = SqlIdentifierValidator.QuoteIdentifier(queryFilter.QueryKey);
 
             var builder = SupportOperations[queryFilter.Operation];
             var result = builder.Build(queryFilter);
@@ -44,6 +45,15 @@ public class SqlFilterCompiler : IFilterCompiler
 
             foreach (var item in dictionary)
             {
+                // Validate logical operator (only 'and' or 'or' allowed)
+                var logicalOperator = item.Key.TrimStart('$').ToLowerInvariant();
+                if (logicalOperator != "and" && logicalOperator != "or")
+                {
+                    throw new ArgumentException(
+                        $"Invalid logical operator: '{item.Key}'. Only 'and' or 'or' are allowed.",
+                        nameof(filter));
+                }
+
                 foreach (var value in item.Value)
                 {
                     var result = Compile(value as JObject, ref count);
@@ -53,7 +63,7 @@ public class SqlFilterCompiler : IFilterCompiler
                         objValue.TryAdd(r.Key, r.Value);
                     }
                 }
-                queryResult = $"( {string.Join($" {item.Key.TrimStart('$')} ", listQuery)} )";
+                queryResult = $"( {string.Join($" {logicalOperator} ", listQuery)} )";
             }
 
             return (queryResult, objValue);
