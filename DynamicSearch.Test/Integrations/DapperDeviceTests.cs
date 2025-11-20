@@ -386,9 +386,10 @@ public class DapperDeviceTests : IClassFixture<CompositeFixture>
         // Act
         var (query, value) = _queryService.CompileQuery(_baseQuery, criteria);
 
-        // Assert
-        Xunit.Assert.Contains("between", query.ToLower());
+        // Assert - BETWEEN is implemented as range comparison: @0 <= column AND column <= @1
+        Xunit.Assert.Contains("<=", query);
         Xunit.Assert.Contains("and", query.ToLower());
+        Xunit.Assert.Contains("\"created_utc\"", query);
     }
 
     [Fact]
@@ -411,8 +412,9 @@ public class DapperDeviceTests : IClassFixture<CompositeFixture>
         // Act
         var (query, value) = _queryService.CompileQuery(_baseQuery, criteria);
 
-        // Assert
-        Xunit.Assert.Contains("not between", query.ToLower());
+        // Assert - NOT BETWEEN is implemented as: column < @0 OR column > @1
+        Xunit.Assert.Contains("\"created_utc\"", query);
+        Xunit.Assert.Contains("or", query.ToLower());
     }
 
     #endregion
