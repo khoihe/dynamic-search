@@ -23,6 +23,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DynamicSearch.Sample\src\Core.Api\Core.Api.csproj" />
+    <ProjectReference Include="..\DynamicSearch.Dapper\DynamicSearch.Dapper.csproj" />
+    <ProjectReference Include="..\DynamicSearch.EfCore\DynamicSearch.EfCore.csproj" />
   </ItemGroup>
 
 </Project>
