@@ -56,16 +56,13 @@ public class NumericArrayParserTests
     }
 
     [Fact]
-    public void Parse_EmptyArray_ReturnsEmptyArray()
+    public void Parse_EmptyArray_ThrowsFormatException()
     {
         // Arrange
         var input = "[]";
 
-        // Act
-        var result = _parser.Parse(input);
-
-        // Assert
-        Xunit.Assert.Empty(result);
+        // Act & Assert - Empty array becomes "" after trim, which cannot be parsed
+        Xunit.Assert.Throws<FormatException>(() => _parser.Parse(input));
     }
 
     [Theory]

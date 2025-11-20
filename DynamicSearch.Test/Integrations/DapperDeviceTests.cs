@@ -115,7 +115,7 @@ public class DapperDeviceTests : IClassFixture<CompositeFixture>
         var (query, value) = _queryService.CompileQuery(_baseQuery, criteria);
 
         // Assert
-        Xunit.Assert.Contains("!=", query);
+        Xunit.Assert.Contains("<>", query);
         Xunit.Assert.Contains("\"name\"", query);
     }
 
@@ -139,9 +139,9 @@ public class DapperDeviceTests : IClassFixture<CompositeFixture>
         // Act
         var (query, value) = _queryService.CompileQuery(_baseQuery, criteria);
 
-        // Assert
-        Xunit.Assert.Contains("in", query.ToLower());
+        // Assert - IN operations are expanded to multiple OR clauses
         Xunit.Assert.Contains("\"name\"", query);
+        Xunit.Assert.Contains("or", query.ToLower());
     }
 
     [Fact]
@@ -164,9 +164,10 @@ public class DapperDeviceTests : IClassFixture<CompositeFixture>
         // Act
         var (query, value) = _queryService.CompileQuery(_baseQuery, criteria);
 
-        // Assert
-        Xunit.Assert.Contains("not in", query.ToLower());
+        // Assert - NOT IN operations are expanded to multiple AND clauses with <>
         Xunit.Assert.Contains("\"name\"", query);
+        Xunit.Assert.Contains("<>", query);
+        Xunit.Assert.Contains("and", query.ToLower());
     }
 
     [Fact]
@@ -182,7 +183,7 @@ public class DapperDeviceTests : IClassFixture<CompositeFixture>
                 { "queryKey", "created_utc" },
                 { "queryType", "datetime" },
                 { "operation", "lt" },
-                { "queryValue", "2024-01-03T00:00:00" }
+                { "queryValue", "2024-01-03T00:00:00:0000" }
             }
         };
 
@@ -207,7 +208,7 @@ public class DapperDeviceTests : IClassFixture<CompositeFixture>
                 { "queryKey", "created_utc" },
                 { "queryType", "datetime" },
                 { "operation", "lte" },
-                { "queryValue", "2024-01-03T00:00:00" }
+                { "queryValue", "2024-01-03T00:00:00:0000" }
             }
         };
 
@@ -231,7 +232,7 @@ public class DapperDeviceTests : IClassFixture<CompositeFixture>
                 { "queryKey", "created_utc" },
                 { "queryType", "datetime" },
                 { "operation", "gt" },
-                { "queryValue", "2024-01-03T00:00:00" }
+                { "queryValue", "2024-01-03T00:00:00:0000" }
             }
         };
 
@@ -256,7 +257,7 @@ public class DapperDeviceTests : IClassFixture<CompositeFixture>
                 { "queryKey", "created_utc" },
                 { "queryType", "datetime" },
                 { "operation", "gte" },
-                { "queryValue", "2024-01-03T00:00:00" }
+                { "queryValue", "2024-01-03T00:00:00:0000" }
             }
         };
 
@@ -313,7 +314,7 @@ public class DapperDeviceTests : IClassFixture<CompositeFixture>
         var (query, value) = _queryService.CompileQuery(_baseQuery, criteria);
 
         // Assert
-        Xunit.Assert.Contains("not like", query.ToLower());
+        Xunit.Assert.Contains("not ilike", query.ToLower());
     }
 
     [Fact]
@@ -378,7 +379,7 @@ public class DapperDeviceTests : IClassFixture<CompositeFixture>
                 { "queryKey", "created_utc" },
                 { "queryType", "datetime" },
                 { "operation", "between" },
-                { "queryValue", "[2024-01-01T00:00:00,2024-01-02T00:00:00]" }
+                { "queryValue", "[2024-01-01T00:00:00:0000,2024-01-02T00:00:00:0000]" }
             }
         };
 
@@ -403,7 +404,7 @@ public class DapperDeviceTests : IClassFixture<CompositeFixture>
                 { "queryKey", "created_utc" },
                 { "queryType", "datetime" },
                 { "operation", "nbetween" },
-                { "queryValue", "[2024-01-01T00:00:00,2024-01-02T00:00:00]" }
+                { "queryValue", "[2024-01-01T00:00:00:0000,2024-01-02T00:00:00:0000]" }
             }
         };
 
@@ -575,7 +576,7 @@ public class DapperDeviceTests : IClassFixture<CompositeFixture>
                             { "queryKey", "created_utc" },
                             { "queryType", "datetime" },
                             { "operation", "gt" },
-                            { "queryValue", "2024-01-01T00:00:00" }
+                            { "queryValue", "2024-01-01T00:00:00:0000" }
                         }
                     }
                 }

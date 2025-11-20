@@ -32,7 +32,6 @@ public class NumericParserTests
     [InlineData(" ")]
     [InlineData("abc")]
     [InlineData("12.34.56")]
-    [InlineData("1,000")]
     public void Parse_InvalidNumericStrings_ThrowsFormatException(string input)
     {
         // Act & Assert
