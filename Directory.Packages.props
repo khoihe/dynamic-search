@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <NoWarn>$(NoWarn);NU1507</NoWarn>
+    <NoWarn>$(NoWarn);NU1507;NU1510;NU1603</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <!-- system packages -->
@@ -21,7 +21,7 @@
     <PackageVersion Include="Dapper" Version="2.1.66" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageVersion Include="StackExchange.Redis" Version="2.8.16" />
-    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0-preview.4" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0-preview.5" />
     <PackageVersion Include="MediatR" Version="12.4.1" />
     <PackageVersion Include="System.Linq.Dynamic.Core" Version="1.7.0" />
 

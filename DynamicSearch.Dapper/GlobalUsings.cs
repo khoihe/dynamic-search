@@ -17,4 +17,5 @@ global using DynamicSearch.Dapper.Builder;
 global using DynamicSearch.Dapper.Constant;
 global using DynamicSearch.Dapper.Extension;
 global using DynamicSearch.Dapper.Interface;
+global using DynamicSearch.Dapper.Security;
 global using DynamicSearch.Dapper.Builder.Abstraction;
