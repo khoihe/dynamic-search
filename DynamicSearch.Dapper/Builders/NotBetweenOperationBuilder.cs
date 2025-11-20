@@ -23,7 +23,7 @@ public class NotBetweenOperationBuilder : BetweenOperationBuilder
         if (values.Length != 2) throw new ArgumentException($"Value should be an array of 2 values");
         string tokenFrom = "@valueFrom", tokenTo = "@valueTo";
         string query = $"({fieldName}::date < {tokenFrom} or {fieldName}::date > {tokenTo})";
-        return (query, values.Select(x => x as object).ToArray(), new string[] { "@dateFrom", "@dateTo" });
+        return (query, values.Select(x => x as object).ToArray(), new string[] { tokenFrom, tokenTo });
     }
 
     protected override (string Query, object[] Values, string[] Tokens) BuildOperationSqlDateTime(string fieldName, DateTime[] values)
